@@ -6,51 +6,62 @@
 
 package mcd;
 
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 /**
  *
  * @author aquinoacordero
  */
+@RunWith(Parameterized.class)
 public class CalculoParameTest {
     
-    public CalculoParameTest(int num1, int num2) {
+     private int num1;
+    private int num2;
+    private Calculo calc;
+    private int expResult;
+    
+    
+    public CalculoParameTest(int num1, int num2, int mcd) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.expResult = mcd;
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
-    public void setUp() {
+    public void Initialize() {
+        calc=new Calculo();
     }
     
-    @After
-    public void tearDown() {
+  
+
+     @Parameterized.Parameters
+     public static Collection calculando() {
+        return Arrays.asList(new Object[][]{
+            {1, 1, 1},
+            {8, 4, 4},
+            {8, 3, 1}
+        });
     }
+
 
     
     @Test
     public void testObtenerMCD() {
-        Calculo calc = new Calculo();
-        System.out.println("obtenerMCD");
-        int num1 = 0;
-        int num2 = 0;
-        Calculo instance = new Calculo();
-        int expResult = 0;
-        int result = instance.obtenerMCD(num1, num2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //Calculo calc = new Calculo();
+        int result = calc.obtenerMCD(num1, num2);
+        assertEquals(expResult, result,0);
+        System.out.println("resultado="+ expResult);
     }
     
 }

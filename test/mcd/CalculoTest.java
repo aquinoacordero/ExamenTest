@@ -40,7 +40,6 @@ public class CalculoTest {
         int expResult = 1;
         int result = calc.obtenerMCD(num1, num2);
         assertEquals(expResult, result, 0);
-        
         System.out.println("numero1 :"+num1+" numero2 : "+num2+
                 " resultado= "+expResult);
     }
